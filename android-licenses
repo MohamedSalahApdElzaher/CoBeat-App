@@ -1,0 +1,15 @@
+Doctor summary (to see all details, run flutter doctor -v):
+[√] Flutter (Channel stable, 2.10.1, on Microsoft Windows [Version 10.0.19043.1706], locale ar-EG)
+[√] Android toolchain - develop for Android devices (Android SDK version 32.1.0-rc1)
+[√] Chrome - develop for the web
+[X] Visual Studio - develop for Windows
+    X Visual Studio not installed; this is necessary for Windows development.
+      Download at https://visualstudio.microsoft.com/downloads/.
+      Please install the "Desktop development with C++" workload, including all of its default components
+[√] Android Studio (version 2021.1)
+[√] IntelliJ IDEA Community Edition (version 2022.1)
+[√] VS Code
+[√] Connected device (3 available)
+[√] HTTP Host Availability
+
+! Doctor found issues in 1 category.

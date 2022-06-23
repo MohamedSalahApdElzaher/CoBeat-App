@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -22,6 +23,31 @@ enum RecordingState {
 }
 
 class _RecorderViewState extends State<RecorderView> {
+ // max record voice time 10 seconds
+  static const maxSeconds = 10;
+  int seconds = maxSeconds;
+  Timer? timer;
+
+  void startTimer(){
+    timer = Timer.periodic(Duration(seconds: 1), (_) {
+      if(seconds > 0) {
+        setState(() => seconds--);
+      }else{
+        stopTimer();
+        _stopRecording();
+        Fluttertoast.showToast(
+          backgroundColor: Colors.red,
+          msg: "Recording Stop",
+        );
+        setState(() => isButtonActive = false);
+      }
+    });
+  }
+
+  void stopTimer(){
+    timer?.cancel();
+  }
+
   IconData _recordIcon = Icons.mic_none;
   String _recordText = 'Click To Start';
   RecordingState _recordingState = RecordingState.UnSet;
@@ -48,6 +74,8 @@ class _RecorderViewState extends State<RecorderView> {
     super.dispose();
   }
 
+  bool isButtonActive = true;
+
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -56,10 +84,14 @@ class _RecorderViewState extends State<RecorderView> {
 
         MaterialButton(
           color: Color(0xff0563c4),
-          onPressed: () async {
-            await _onRecordButtonPressed();
-            setState(() {});
-          },
+          onPressed:
+              isButtonActive ?
+              () async {
+                await _onRecordButtonPressed();
+                setState(() {});
+          }
+          :
+          null,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(100),
           ),
@@ -94,6 +126,8 @@ class _RecorderViewState extends State<RecorderView> {
           backgroundColor: Colors.red,
           msg: "Recording Stop",
         );
+        stopTimer();
+        setState(() => isButtonActive = false);
         break;
 
       case RecordingState.Stopped:
@@ -133,6 +167,7 @@ class _RecorderViewState extends State<RecorderView> {
   _startRecording() async {
     await audioRecorder.start();
     await audioRecorder.current(channel: 0);
+    startTimer();
   }
 
   _stopRecording() async {
@@ -161,4 +196,6 @@ class _RecorderViewState extends State<RecorderView> {
       ));
     }
   }
+
+
 }

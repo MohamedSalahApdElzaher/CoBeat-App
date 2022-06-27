@@ -33,8 +33,7 @@
 - COVID APIS STATISTICS [**docs**](https://disease.sh/docs/)
 - Backend swagger UI [**docs**](https://cough-api.herokuapp.com/api-docs/)
 
-## LIVE DEMO
-[**Video link**](https://drive.google.com/file/d/1ySY7B5Q3RzrezhQn_qx59mK8GQ2uMSC5/view?usp=sharing)
+## [APP LIVE DEMO](https://drive.google.com/file/d/1ySY7B5Q3RzrezhQn_qx59mK8GQ2uMSC5/view?usp=sharing)
 
 ## MY GREAT TEAM MEMBERS :heartpulse:
 - [@YossefMohamed](https://github.com/YossefMohamed)
